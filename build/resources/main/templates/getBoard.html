@@ -10,6 +10,9 @@
 
         <tr>
             <td bgcolor="orange" th:text="제목" width="80"></th>
+            <!--
+                [서버]에서 java의 데이터를 [클라이언트]html문서에 값을 할당해주는 문법${title}
+            -->
             <th><input name="title" type="text" th:value="${title}"></th>
         </tr>
         <tr>
