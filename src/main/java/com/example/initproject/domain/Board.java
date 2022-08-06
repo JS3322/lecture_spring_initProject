@@ -17,6 +17,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@Table(name = "BOARD")
 public class Board {
 
     //식별 필드

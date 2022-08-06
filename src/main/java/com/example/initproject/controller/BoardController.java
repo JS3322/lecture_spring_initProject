@@ -2,6 +2,8 @@ package com.example.initproject.controller;
 
 //외장 라이브러리 호출(import), gradle로 설치한 라이브러리
 import com.example.initproject.domain.Board;
+import com.example.initproject.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 //내장 라이브러리 호출 (import)
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 public class BoardController {
+
+    @Autowired
+    private BoardService boardService;
 
     //CRUD 정리
     //중복 코드 정리
@@ -41,8 +50,11 @@ public class BoardController {
     public String insertBoard(
             @RequestParam("title")String title,
             @RequestParam("writer")String writer,
-            @RequestParam("content")String content
+            @RequestParam("content")String content,
+            Board board1
             ) {
+
+//        BoardService.insertBoard(board1);
 
         count++;
         Board board = new Board();
@@ -56,7 +68,34 @@ public class BoardController {
         board_array.add(board);
 
         //redirect : 페이지 전환 이동
-        //redirect:getBoardList : getBoardList 페이지로 이동
+        //redirect:getBoardList : getBoardList 컨트롤러 이동
+
+        //--------------------------------------------
+
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction tx = em.getTransaction();
+//
+//        try {
+//            tx.begin();
+//
+//            Board board1 = new Board();
+//            board1.setSeq((long) count);
+//            board1.setTitle(title);
+//            board1.setWriter(writer);
+//            board1.setContent(content);
+//            board1.setCreateDate(new Date());
+//            board1.setCnt(0L);
+//
+//            em.persist(board1);
+//            tx.commit();
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            tx.rollback();
+//        }finally {
+//            em.close();
+//            emf.close();
+//        }
         return "redirect:getBoardList";
     }
 
@@ -93,28 +132,31 @@ public class BoardController {
     //문자열을 찾는 매핑기능(연결)이 실행되고 하단에 메서드가 실행
     //return String인 이유는 뷰리졸버가 html파일을 찾기 위한 문자열을 리턴
     //Read
-    @RequestMapping("/getBoardList")
-    public String getBoardList(Model model) {
+    @GetMapping("/getBoardList")
+    public String getBoardList(Model model, Board board) {
+
+        List<Board> boardList = boardService.getBoardList(board);
+
         //List 타입으로 Board객체를 넣는 boardList변수명 선언
         // = (대입연산자) heap메모리에 Arraylist타입으로 할당
         //List는 ArrayList의 부모클래스
-        List<Board> boardList = new ArrayList<Board>();
-
-        //title_array.size()로 게시판 글이 1개이상일 경우에만 model에 데이터 입력하여 
-        //[클라이언트]에 전달
-        if (board_array.size() > 0) {
-            for(int i=0; i<board_array.size(); i++) {
-                Board board = new Board();
-
-                board.setSeq(board_array.get(i).getSeq());
-                board.setTitle(board_array.get(i).getTitle());
-                board.setWriter(board_array.get(i).getWriter());
-                board.setContent(board_array.get(i).getContent());
-                board.setCreateDate(board_array.get(i).getCreateDate());
-                board.setCnt(board_array.get(i).getCnt());
-                boardList.add(board);
-            }
-        }
+//        List<Board> boardList = new ArrayList<Board>();
+//
+//        //title_array.size()로 게시판 글이 1개이상일 경우에만 model에 데이터 입력하여
+//        //[클라이언트]에 전달
+//        if (board_array.size() > 0) {
+////            for(int i=0; i<board_array.size(); i++) {
+////                Board board = new Board();
+////
+////                board.setSeq(board_array.get(i).getSeq());
+////                board.setTitle(board_array.get(i).getTitle());
+////                board.setWriter(board_array.get(i).getWriter());
+////                board.setContent(board_array.get(i).getContent());
+////                board.setCreateDate(board_array.get(i).getCreateDate());
+////                board.setCnt(board_array.get(i).getCnt());
+////                boardList.add(board);
+////            }
+//        }
 
         //model 객체에 boardList(arraylist)를 boardList key값으로 넣음
         //attributeName = key
