@@ -1,6 +1,5 @@
 package com.example.initproject.controller;
 
-import com.example.initproject.model.Slime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +16,6 @@ public class HelloController {
     //일방통행 구조 (페이지 전환(변경))
     @GetMapping("hello")
     public String slimeView(Model model) {
-
-        Slime slime = new Slime();
-        model.addAttribute("data11", slime.getHp());
         //아래 retrun hello는 템플릿에 hello.html로 이동
         //Controller는 return 통해 '알아서' hello라는 이름의 html파일을 찾습니다
         return slimeView;

@@ -2,7 +2,7 @@ package com.example.initproject.controller;
 
 //외장 라이브러리 호출(import), gradle로 설치한 라이브러리
 import com.example.initproject.domain.Board;
-import com.example.initproject.service.BoardService;
+//import com.example.initproject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +23,8 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    @Autowired
-    private BoardService boardService;
+//    @Autowired
+//    private BoardService boardService;
 
     //CRUD 정리
     //중복 코드 정리
@@ -135,7 +135,7 @@ public class BoardController {
     @GetMapping("/getBoardList")
     public String getBoardList(Model model, Board board) {
 
-        List<Board> boardList = boardService.getBoardList(board);
+//        List<Board> boardList = boardService.getBoardList(board);
 
         //List 타입으로 Board객체를 넣는 boardList변수명 선언
         // = (대입연산자) heap메모리에 Arraylist타입으로 할당
@@ -162,7 +162,7 @@ public class BoardController {
         //attributeName = key
         //attributeValue = value
         //model에는 참조타입만 넣을 수 있다 (addAttribute 메서드 안에 매개변수 타입으로 확인 가능)
-        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardList", board_array);
         //디서패처서블릿이 뷰 리졸버를 찾아서 연결해 줍니다
         //viewResolver
         //retrun getBoardList라는 문자열로 templates에 있는 같은 이름에 html파일을 찾는다
