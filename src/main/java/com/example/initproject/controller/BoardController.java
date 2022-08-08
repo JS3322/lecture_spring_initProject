@@ -67,15 +67,15 @@ public class BoardController {
             ) {
         System.out.println("----------insertBoard 실행----------");
         count++;
-        Board board = new Board();
-
-        board.setSeq((long) count);
-        board.setTitle(title);
-        board.setWriter(writer);
-        board.setContent(content);
-        board.setCreateDate(new Date());
-        board.setCnt(0L);
-        board_array.add(board);
+//        Board board = new Board();
+//
+//        board.setSeq((long) count);
+//        board.setTitle(title);
+//        board.setWriter(writer);
+//        board.setContent(content);
+//        board.setCreateDate(new Date());
+//        board.setCnt(0L);
+//        board_array.add(board);
 
         return "redirect:getBoardList";
     }
