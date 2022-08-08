@@ -17,21 +17,22 @@ public class MemberService {
     }
 
     public Long join(Member member) {
-        validateDuplicateMember(member);
+//        validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
     }
 
     //중복 회원 찾기
-    private void validateDuplicateMember(Member member) {
-        memberRepository.findByName(member.getName()).ifPresent();
-    }
+//    private void validateDuplicateMember(Member member) {
+//        memberRepository.findByName(member.getName()).ifPresent();
+//    }
 
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
     public Optional<Member> findOne(Long memberId) {
+
         return memberRepository.findByName();
     }
 }

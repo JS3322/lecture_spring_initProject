@@ -1,6 +1,7 @@
 package com.example.initproject.repository;
 
 import com.example.initproject.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
