@@ -11,7 +11,7 @@ public class InitProjectApplication {
 
         SpringApplication.run(InitProjectApplication.class, args);
 
-        SpringApplication application = new SpringApplication(InitProjectApplication.class);
+//        SpringApplication application = new SpringApplication(InitProjectApplication.class);
 
 //        //Not web
 //        application.setWebApplicationType(WebApplicationType.NONE);
